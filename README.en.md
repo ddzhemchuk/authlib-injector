@@ -1,3 +1,4 @@
+# Build with: ./gradlew clean build shadowJar
  * **English**
  * [简体中文(Chinese Simplified)](https://github.com/yushijinhun/authlib-injector/blob/develop/README.md)
 

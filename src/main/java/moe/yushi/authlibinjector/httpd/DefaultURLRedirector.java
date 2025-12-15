@@ -38,13 +38,25 @@ public class DefaultURLRedirector implements URLRedirector {
 		domainMapping.put("sessionserver.mojang.com", "sessionserver");
 		domainMapping.put("skins.minecraft.net", "skins");
 		domainMapping.put("api.minecraftservices.com", "minecraftservices");
+		domainMapping.put("session.minecraft.net", "legacy");
 	}
 
 	@Override
 	public Optional<String> redirect(String domain, String path) {
+//		System.out.println(domain);
+//		System.out.println(path);
+
 		String subdirectory = domainMapping.get(domain);
 		if (subdirectory == null) {
 			return Optional.empty();
+		}
+
+		if(path.equals("/game/checkserver.jsp?user=")){
+			path = "/checkserver?username=";
+		}
+
+		if(path.equals("/game/joinserver.jsp?user=")){
+			path = "/joinserver?username=";
 		}
 
 		return Optional.of(apiRoot + subdirectory + path);
